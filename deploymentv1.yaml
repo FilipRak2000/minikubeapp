@@ -14,10 +14,12 @@ spec:
     spec:
       containers:
         - name: backendapp
-          image: filiprak2000/nodejsapp:v2
+          image: filiprak2000/nodejsapp:v3 
           volumeMounts: 
             - mountPath: /app/savedFiles
               name: myvolumexd
       volumes:
         - name: myvolumexd
-          emptyDir: {}
+          hostPath: 
+            path: /data1
+            type: DirectoryOrCreate

@@ -32,6 +32,37 @@ app.post('/save', (req, res) => {
   });
 });
 
+app.get("/read", (req, res) => {
+    const directoryPath = path.join(__dirname, 'savedFiles');
+  
+    fs.readdir(directoryPath, (err, files) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Wystąpił błąd podczas odczytu katalogu');
+      }
+  
+      const fileContents = [];
+  
+      files.forEach((file) => {
+        const filePath = path.join(directoryPath, file);
+  
+        fs.readFile(filePath, 'utf8', (readErr, data) => {
+          if (readErr) {
+            console.error(readErr);
+            return res.status(500).send('Wystąpił błąd podczas odczytu pliku');
+          }
+  
+          fileContents.push({ fileName: file, content: data });
+  
+    
+          if (fileContents.length === files.length) {
+            res.json(fileContents);
+          }
+        });
+      });
+    });
+  });
+
 app.listen(port, () => {
   console.log(`Aplikacja jest dostępna pod adresem http://localhost:${port}`);
 });
