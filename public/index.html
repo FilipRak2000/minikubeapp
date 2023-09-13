@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zapisywanie plików</title>
+</head>
+<body>
+  <h1>Zapisywanie plików</h1>
+  <form action="/save" method="POST">
+    <label for="fileName">Nazwa pliku:</label>
+    <input type="text" id="fileName" name="fileName" required><br>
+    <label for="content">Zawartość pliku:</label><br>
+    <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+    <button type="submit">Zapisz plik</button>
+  </form>
+</body>
+</html>
