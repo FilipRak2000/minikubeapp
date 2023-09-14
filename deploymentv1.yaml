@@ -20,6 +20,6 @@ spec:
               name: myvolumexd
       volumes:
         - name: myvolumexd
-          hostPath: 
-            path: /data1
-            type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: pvc
+
